@@ -1,22 +1,21 @@
-interface Player {
+export interface Player {
     name: string;
     position: string;
 }
 
-interface Match {
+export interface Match {
     id: number;
     homeTeam: string;
     awayTeam: string;
     homeScore: number;
     awayScore: number;
-    manOfTheMatch: string;
-    homeTeamLineup: Player[];
-    awayTeamLineup: Player[];
     date: string;
 }
 
-interface AppState {
+export interface AppState {
     matches: Match[];
     favorites: number[];
+    setMatches: (matches: Match[]) => void;
     toggleFavorite: (matchId: number) => void;
-}
+  }
+  
