@@ -14,8 +14,6 @@ export interface Match {
 
 export interface AppState {
     matches: Match[];
-    favorites: number[];
     setMatches: (matches: Match[]) => void;
-    toggleFavorite: (matchId: number) => void;
   }
   

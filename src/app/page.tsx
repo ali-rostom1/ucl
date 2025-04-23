@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { matches, favorites, setMatches } = useStore();
+  const { matches, setMatches } = useStore();
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

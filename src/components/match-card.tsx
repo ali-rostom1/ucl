@@ -1,4 +1,3 @@
-import { useStore } from "@/stores/matchstore";
 import { Match } from "@/types";
 import Link from "next/link";
 
