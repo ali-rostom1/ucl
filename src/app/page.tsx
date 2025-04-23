@@ -19,13 +19,16 @@ export default function Home() {
         setLoading(true);
         setError(null);
         
-        const response = await fetch('https://api.sofascore.com/api/v1/sport/football/scheduled-events/2025-04-15');
+        const response = await fetch('https://api.sofascore.com/api/v1/sport/football/scheduled-events/2025-04-16');
         if (!response.ok) {
           throw new Error('Failed to fetch matches');
         }
+
         const data = await response.json();
-        console.log(data)
-        var matches = data.events.slice(0,4);
+        console.log(data.events);
+        var matches = data.events.filter((match : any) => match.season.name == "UEFA Champions League 24/25");
+        console.log(matches);
+
         var matchess: Match[] = [];
         matches.map((match : any) =>{
           
@@ -40,6 +43,7 @@ export default function Home() {
           }
           matchess.push(tmp);
         });
+        
         setMatches(matchess);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
@@ -70,22 +74,7 @@ export default function Home() {
         Champions League 2024/2025 Quarter Finals
       </h1>
       <div className="max-w-4xl mx-auto">
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold">
-            Favorites ({favorites.length})
-          </h2>
-          {favorites.length === 0 ? (
-            <p className="text-gray-600">No favorite matches selected.</p>
-          ) : (
-            <div className="grid gap-4">
-              {matches
-                .filter((match) => favorites.includes(match.id))
-                .map((match) => (
-                  <MatchCard key={match.id} match={match} />
-                ))}
-            </div>
-          )}
-        </div>
+        
         <div className="grid gap-4">
           {paginatedMatches.map((match) => (
             <MatchCard key={match.id} match={match} />
